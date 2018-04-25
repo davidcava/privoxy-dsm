@@ -1,0 +1,60 @@
+#!/bin/sh
+
+
+PKGDEST_ETC=${SYNOPKG_PKGDEST}/etc
+CONF_DEST=/var/packages/privoxy/etc
+
+CONFIGS="config trust default.action match-all.action user.action default.filter user.filter regression-tests.action"
+
+    # Copy modifiable config files to non-volatile space in /var/packages/{package}/etc, preserving existing if any
+    # (sames as in make install from privoxy)
+    echo Installing configuration files to $CONF_DEST
+    for i in $CONFIGS; do
+        if [ "$i" = "default.action" ] || [ "$i" = "default.filter" ] ; then
+            cmp -s ${PKGDEST_ETC}/$i $CONF_DEST/$i
+            if [ $? -eq 0 ]
+            then
+                echo "File $i is same as already installed - not installing this file again"
+		rm -f ${PKGDEST_ETC}/$i
+            else
+                rm -f $CONF_DEST/$i
+                echo Installing fresh $i
+                mv -f ${PKGDEST_ETC}/$i $CONF_DEST || exit 1
+            fi
+        elif [ -s "$CONF_DEST/$i" ]; then
+            cmp -s ${PKGDEST_ETC}/$i $CONF_DEST/$i
+            if [ $? -eq 0 ]
+            then
+                echo "File $i is same as already installed - not installing this file again"
+            else
+                cmp -s ${PKGDEST_ETC}/$i $CONF_DEST/$i.new
+                if [ $? -eq 0 ]
+                then
+                    echo "File $i is different but same $i.new was already installed previously - not installing this file again"
+                    rm -f ${PKGDEST_ETC}/$i
+                else
+                    echo Installing changed $i as $i.new
+                    mv -f ${PKGDEST_ETC}/$i $CONF_DEST/$i.new || exit 1
+                    NEW=1
+                fi
+            fi
+        else
+            mv -f ${PKGDEST_ETC}/$i $CONF_DEST || exit 1
+        fi
+    done
+    if [ -n "$NEW" ]; then
+        chmod 0660 $CONF_DEST/*.new || exit 1
+        echo "Warning: Older config files are preserved. Check new config files *.new in $CONF_DEST" >>${SYNOPKG_TEMP_LOGFILE}
+    fi
+
+    if [ -e $CONF_DEST/templates ]; then
+        echo Template dir $CONF_DEST/templates already there as `ls -Ld $CONF_DEST/templates`
+    else
+	echo Linking template dir to ${PKGDEST_ETC}/templates
+        ln -sf ${PKGDEST_ETC}/templates $CONF_DEST/templates || exit 1
+    fi
+
+    #not needed becayse automatically added according to INFO entry dsmuidir
+    #ln -sf "${SYNOPKG_PKGDEST}/ui" /usr/syno/synoman/webman/3rdparty/privoxy/ui
+
+exit 0

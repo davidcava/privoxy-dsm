@@ -1,0 +1,5 @@
+#!/bin/sh
+
+#/bin/rm -f "/usr/local/${SYNOPKG_PKGNAME}"
+
+exit 0

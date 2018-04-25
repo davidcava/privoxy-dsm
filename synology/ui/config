@@ -1,0 +1,16 @@
+{
+        ".url": {
+                "SYNO.SDS.Privoxy.Application": {
+                        "type": "legacy",
+                        "allUsers": false,
+                        "allowMultiInstance": false,
+                        "title": "Privoxy",
+                        "desc": "Privoxy configuration",
+                        "icon": "images/privoxy{0}.png",
+                        "appWindow": "SYNO.SDS.Privoxy.Application",
+                        "texts": "texts",
+                        "url": "/webman/3rdparty/privoxy/index.cgi"
+                }
+        }
+}
+

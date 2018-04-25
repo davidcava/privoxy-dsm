@@ -1,0 +1,30 @@
+#!/bin/sh
+# Copyright (c) 2000-2015 Synology Inc. All rights reserved.
+
+PKG_NAME=privoxy
+INST_DIR=/tmp/_${PKG_NAME}
+
+case ${MakeClean} in
+    [Yy][Ee][Ss])
+        make distclean
+        ;;
+esac
+
+env CC="${CC}" CXX="${CXX}" LD="${LD}" AR=${AR} STRIP=${STRIP} RANLIB=${RANLIB} NM=${NM} \
+    CFLAGS="${CFLAGS}" CXXFLAGS="$CXXFLAGS $CFLAGS" CPPFLAGS="-I/usr/local/include" \
+    LDFLAGS="${LDFLAGS}" \
+    autoheader
+
+env CC="${CC}" CXX="${CXX}" LD="${LD}" AR=${AR} STRIP=${STRIP} RANLIB=${RANLIB} NM=${NM} \
+    CFLAGS="${CFLAGS}" CXXFLAGS="$CXXFLAGS $CFLAGS" CPPFLAGS="-I/usr/local/include" \
+    LDFLAGS="${LDFLAGS}" \
+    autoconf
+
+env CC="${CC}" CXX="${CXX}" LD="${LD}" AR=${AR} STRIP=${STRIP} RANLIB=${RANLIB} NM=${NM} \
+    CFLAGS="${CFLAGS}" CXXFLAGS="$CXXFLAGS $CFLAGS" CPPFLAGS="-I/usr/local/include" \
+    LDFLAGS="${LDFLAGS}" \
+    ./configure ${ConfigOpt} \
+    --with-docbook=no \
+    --prefix=${INST_DIR}
+
+make ${MAKE_FLAGS}
