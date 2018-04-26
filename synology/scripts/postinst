@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 PKGDEST_ETC=${SYNOPKG_PKGDEST}/etc
 CONF_DEST=/var/packages/privoxy/etc
 
@@ -54,7 +53,10 @@ CONFIGS="config trust default.action match-all.action user.action default.filter
         ln -sf ${PKGDEST_ETC}/templates $CONF_DEST/templates || exit 1
     fi
 
-    #not needed becayse automatically added according to INFO entry dsmuidir
+    #not needed because automatically added according to INFO entry dsmuidir
     #ln -sf "${SYNOPKG_PKGDEST}/ui" /usr/syno/synoman/webman/3rdparty/privoxy/ui
+
+    #authentication does not work in DSM 6.1 if cgi does not belong to root (is it a bug?)
+    #chown root:root ${SYNOPKG_PKGDEST}/ui/*.cgi #not needed: handled in conf/privilege
 
 exit 0
