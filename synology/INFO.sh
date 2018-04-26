@@ -4,9 +4,9 @@
 . /pkgscripts/include/pkg_util.sh
 
 package="privoxy"
-version="3.0.26"
+version="3.0.26-1"
 displayname="privoxy"
-arch="$(pkg_get_platform) "
+arch="$(pkg_get_platform)"
 maintainer="David Cavallini"
 distributor="davidcava"
 distributor_url="https://github.com/davidcava/"
