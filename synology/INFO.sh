@@ -4,7 +4,7 @@
 . /pkgscripts/include/pkg_util.sh
 
 package="privoxy"
-version="3.0.26-1"
+version="3.0.26-2"
 displayname="privoxy"
 arch="$(pkg_get_platform)"
 maintainer="David Cavallini"

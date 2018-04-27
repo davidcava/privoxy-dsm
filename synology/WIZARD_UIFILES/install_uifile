@@ -4,11 +4,11 @@
         "type": "singleselect",
         "desc": "Address on which Privoxy will listen for client requests",
         "subitems": [{
-            "key": "address_127",
+            "key": "wiz_addr_127",
             "desc": "127.0.0.1 - proxy can only be used by applications on this Synology machine",
             "defaultValue":"true"
         },{
-            "key": "address_0",
+            "key": "wiz_addr_0",
             "desc": "0.0.0.0 - proxy can be reached by other machines",
             "defaultValue":"false"
         }]
@@ -16,7 +16,7 @@
         "type": "textfield",
         "desc": "TCP port on which Privoxy will listen for client requests",
         "subitems": [{
-            "key": "listen_port",
+            "key": "wiz_port",
             "defaultValue":"8118",
 	    "disabled": true
         }]
@@ -24,11 +24,11 @@
         "type": "singleselect",
         "desc": "Operating mode",
         "subitems": [{
-            "key": "mode_standard",
+            "key": "wiz_mode_standard",
             "desc": "standard - Privoxy uses actions and filters",
             "defaultValue":"true"
         },{
-            "key": "mode_neutral",
+            "key": "wiz_mode_neutral",
             "desc": "neutral - Actions and filters are not used (neutral proxying)",
             "defaultValue":"false"
         }]

@@ -25,8 +25,7 @@ URL_PATH=`expr match "$REQUEST_URI" '.*'"$SCRIPT_NAME"'/\(.*\)'`
 #echo 
 
 # Check authentication as administrative user
-SYNOTOKEN=$(/usr/syno/synoman/webman/login.cgi | sed 's/
-$//' | awk '/^$/,EOF' | jq -r '.SynoToken')
+SYNOTOKEN=$(/usr/syno/synoman/webman/login.cgi | sed 's/\d13$//' | awk '/^$/,EOF' | jq -r '.SynoToken')
 user=$(QUERY_STRING="SynoToken=$SYNOTOKEN" /usr/syno/synoman/webman/modules/authenticate.cgi)
 if [ "$user" != "admin" ]
 then
