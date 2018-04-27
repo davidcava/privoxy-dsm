@@ -1,5 +1,4 @@
 #!/bin/sh
-# Copyright (c) 2000-2015 Synology Inc. All rights reserved.
 
 PKG_NAME=privoxy
 INST_DIR=/tmp/_${PKG_NAME}
