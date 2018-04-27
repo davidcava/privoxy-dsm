@@ -1,4 +1,19 @@
 #!/bin/sh
+# Copyright (c) 2018 David Cavallini
+#    This file is part of privoxy-dsm.
+#
+#    privoxy-dsm is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    privoxy-dsm is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with privoxy-dsm.  If not, see <http://www.gnu.org/licenses/>.
 
 #This CGI script calls http://config.privoxy.org through Privoxy HTTP proxy rewriting the URLs both ways
 
@@ -12,7 +27,8 @@ URL_PATH=`expr match "$REQUEST_URI" '.*'"$SCRIPT_NAME"'/\(.*\)'`
 #echo 
 
 # Check authentication as administrative user
-SYNOTOKEN=$(/usr/syno/synoman/webman/login.cgi | sed 's/$//' | awk '/^$/,EOF' | jq -r '.SynoToken')
+SYNOTOKEN=$(/usr/syno/synoman/webman/login.cgi | sed 's/
+$//' | awk '/^$/,EOF' | jq -r '.SynoToken')
 user=$(QUERY_STRING="SynoToken=$SYNOTOKEN" /usr/syno/synoman/webman/modules/authenticate.cgi)
 if [ "$user" != "admin" ]
 then
