@@ -1,10 +1,10 @@
 # privoxy-dsm
 Scripts and configuration files to generate Privoxy packages for Synology DSM 6.
 
-Generated apk packages from Privoxy sources and privoxy-dsm are stored in the Release area.
+Generated spk packages from Privoxy sources and privoxy-dsm are stored in the Release area.
 
 # Installation
-Download the apk for your architecture from the release section, then install using Synology Package Center button _Manual Install_. See  architectures on [Synology knowledge base](https://www.synology.com/en-us/knowledgebase/DSM/tutorial/General/What_kind_of_CPU_does_my_NAS_have).
+Download the spk for your architecture from the release section, then install using Synology Package Center button _Manual Install_. See  architectures on [Synology knowledge base](https://www.synology.com/en-us/knowledgebase/DSM/tutorial/General/What_kind_of_CPU_does_my_NAS_have).
 
 # Usage
 Privoxy on Synology can be used:
@@ -57,8 +57,8 @@ The wizard setup options are not handled yet so you will need to manually edit t
     the Free Software Foundation, either version 2 of the License, or
     (at your option) any later version.
     
-    Binary (apk) packages in Release area combine files from Privoxy and privoxy-dsm.
-    The applicable licence for those apk files is GPL v2, to comply with Privoxy licence.
+    Binary (spk) packages in Release area combine files from Privoxy and privoxy-dsm.
+    The applicable licence for those spk files is GPL v2, to comply with Privoxy licence.
 
     privoxy-dsm is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
