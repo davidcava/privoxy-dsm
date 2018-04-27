@@ -1,5 +1,5 @@
 # privoxy-dsm
-Privoxy package for Synology DSM 6
+Scripts and configuration files to generate Privoxy packages for Synology DSM 6
 
 # Installation
 Download the spk for your architecture from the release section, then install using Synology Package Center button _Manual Install_. See  architectures on [Synology knowledge base](https://www.synology.com/en-us/knowledgebase/DSM/tutorial/General/What_kind_of_CPU_does_my_NAS_have).
@@ -52,8 +52,11 @@ The wizard setup options are not handled yet so you will need to manually edit t
 
     privoxy-dsm is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
+    the Free Software Foundation, either version 2 of the License, or
     (at your option) any later version.
+    
+    Binary (apk) packages in Release area combine files from Privoxy and privoxy-dsm.
+    The applicable licence for those apk files is GPL v2, to comply with Privoxy licence.
 
     privoxy-dsm is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
