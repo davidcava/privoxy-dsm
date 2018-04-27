@@ -1,5 +1,6 @@
 # privoxy-dsm
-Scripts and configuration files to generate Privoxy packages for Synology DSM 6
+Scripts and configuration files to generate Privoxy packages for Synology DSM 6.
+Generated packaged from Privoxy sources and privoxy-dsm are stored in the Release area.
 
 # Installation
 Download the spk for your architecture from the release section, then install using Synology Package Center button _Manual Install_. See  architectures on [Synology knowledge base](https://www.synology.com/en-us/knowledgebase/DSM/tutorial/General/What_kind_of_CPU_does_my_NAS_have).
