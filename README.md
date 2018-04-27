@@ -15,7 +15,7 @@ You need to manually adapt the Privoxy config file installed in /var/packages/pr
 Especially, change listen address to 0.0.0.0 if you wish to use the proxy not only from your Synology applications. In this case you also need to open the port 8118 in Synology firewall.
 Config changes are immediately taken into account - no need to restart the service.
 
-Your modifications in `config` file are preserved in case of package uninstallation/reinstallation or upgrade. When a modified config file already exists, the installer will install instead `config.new` in same folder.
+Your modifications in `config` file are preserved in case of package uninstallation/reinstallation or upgrade. When a modified config file already exists, the installer will install instead `config.new` in same folder. Same for user.action, user.filter, match-all.action and trust, as those 4 files are meant to be personalized. On the other hand default.action and default.filter are silently overwritten.
 
 Additionaly to the [normal Privoxy way](https://www.privoxy.org/user-manual/configuration.html), the Privoxy admin page can also be opened from within DSM by clicking on the Privoxy icon when authenticated as admin user. This allows to use the admin pages even though the proxy is not accessible from outside the Synology machine (when it listens on 127.0.0.1 or firewall port 8118 is kept closed).
 

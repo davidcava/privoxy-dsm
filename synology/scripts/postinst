@@ -38,6 +38,7 @@ CONFIGS="config trust default.action match-all.action user.action default.filter
             if [ $? -eq 0 ]
             then
                 echo "File $i is same as already installed - not installing this file again"
+		rm -f ${PKGDEST_ETC}/$i
             else
                 cmp -s ${PKGDEST_ETC}/$i $CONF_DEST/$i.new
                 if [ $? -eq 0 ]
