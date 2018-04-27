@@ -36,10 +36,11 @@ The wizard setup options are not handled yet so you will need to manually edit t
   cd privoxy
   ```
 - Get privoxy-dsm folders `synology` and `SynoBuildConf`
-- Workaround DSM toolkit missing `group`
+- Workaround DSM toolkit missing `group`, which Privoxy build process neeeds
   ```sh
   cp /usr/bin/groups /toolkit/build_env/ds.evansport-6.1/usr/bin
   ```
+- Create user and group privoxy into the chroot
 - Build for your architecture, example
   ```sh
   /toolkit/pkgscripts-ng/PkgCreate.py -p evansport -x0 -c privoxy
