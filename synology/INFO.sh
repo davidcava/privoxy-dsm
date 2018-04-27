@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2000-2016 Synology Inc. All rights reserved.
+# Copyright (c) 2018 David Cavallini
 
 . /pkgscripts/include/pkg_util.sh
 
@@ -18,10 +18,6 @@ silent_install="yes"
 silent_upgrade="yes"
 silent_uninstall="yes"
 precheckstartstop="no"
-#adminprotocol="http"
-#adminport=""
-#adminurl="/webman/3rdparty/privoxy/"
-#startstop_restart_services="nginx"
 silent_install="yes"
 silent_upgrade="yes"
 silent_uninstall="yes"
