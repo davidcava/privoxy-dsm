@@ -1,4 +1,19 @@
 #!/bin/sh
+# Copyright (c) 2018 David Cavallini
+#    This file is part of synology-dsm.
+#
+#    synology-dsm is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    synology-dsm is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with synology-dsm.  If not, see <http://www.gnu.org/licenses/>.
 
 PKGDEST_ETC=${SYNOPKG_PKGDEST}/etc
 CONF_DEST=/var/packages/privoxy/etc
@@ -53,10 +68,7 @@ CONFIGS="config trust default.action match-all.action user.action default.filter
         ln -sf ${PKGDEST_ETC}/templates $CONF_DEST/templates || exit 1
     fi
 
-    #not needed because automatically added according to INFO entry dsmuidir
+    #not needed because this link is automatically added according to the INFO entry dsmuidir
     #ln -sf "${SYNOPKG_PKGDEST}/ui" /usr/syno/synoman/webman/3rdparty/privoxy/ui
-
-    #authentication does not work in DSM 6.1 if cgi does not belong to root (is it a bug?)
-    #chown root:root ${SYNOPKG_PKGDEST}/ui/*.cgi #not needed: handled in conf/privilege
 
 exit 0
