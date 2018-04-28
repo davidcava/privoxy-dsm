@@ -1,4 +1,25 @@
 [{
+    "step_title": "Config file",
+    "items": [{
+        "type": "singleselect",
+        "desc": "What to do with existing config file?",
+        "subitems":
+        [{
+            "key": "wiz_conffile_keep",
+            "desc": "Keep existing config file",
+            "defaultValue":"true"
+        }
+        ,{
+            "key": "wiz_conffile_modify",
+            "desc": "Update config file (might not work if it was modified manually)",
+            "defaultValue":"false"
+        }
+        ,{
+            "key": "wiz_conffile_replace",
+            "desc": "Replace with a default config file",
+            "defaultValue":"false"
+        }]
+    }],
     "step_title": "Basic configuration",
     "items": [{
         "type": "singleselect",

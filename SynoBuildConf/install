@@ -40,7 +40,7 @@ SetupPackageFiles() {
     cp INFO "${PKG_DIR}"
     cp -r synology/scripts/ "${PKG_DIR}"
     cp -r synology/conf/ "${PKG_DIR}"
-    cp -r synology/WIZARD_UIFILES/ "${PKG_DIR}"
+    #cp -r synology/WIZARD_UIFILES/ "${PKG_DIR}" #wizard todo
     cp synology/PACKAGE_ICON{,_256}.PNG "${PKG_DIR}"
 }
 
