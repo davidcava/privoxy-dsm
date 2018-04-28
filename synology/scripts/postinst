@@ -40,6 +40,7 @@ CONFIGS="config trust default.action match-all.action user.action default.filter
                 echo "File $i is same as already installed - not installing this file again"
 		rm -f ${PKGDEST_ETC}/$i
             else
+                NEW=1
                 cmp -s ${PKGDEST_ETC}/$i $CONF_DEST/$i.new
                 if [ $? -eq 0 ]
                 then
@@ -48,7 +49,6 @@ CONFIGS="config trust default.action match-all.action user.action default.filter
                 else
                     echo Installing changed $i as $i.new
                     mv -f ${PKGDEST_ETC}/$i $CONF_DEST/$i.new || exit 1
-                    NEW=1
                 fi
             fi
         else

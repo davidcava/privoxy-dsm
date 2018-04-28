@@ -5,7 +5,7 @@
 
 package="privoxy"
 version="3.0.26-2"
-displayname="privoxy"
+displayname="Privoxy"
 arch="$(pkg_get_platform)"
 maintainer="David Cavallini"
 distributor="davidcava"

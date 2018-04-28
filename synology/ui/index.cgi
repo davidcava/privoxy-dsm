@@ -16,6 +16,8 @@
 #This CGI script calls http://config.privoxy.org through Privoxy HTTP proxy rewriting the URLs both ways
 
 PRIVOXY_URI="http://config.privoxy.org"
+PRIVOXY_PORT=8118
+LOG_FILE="/var/packages/privoxy/target/var/log/privoxy/privoxy-dsm.log"
 
 URL_PATH=`expr match "$REQUEST_URI" '.*'"$SCRIPT_NAME"'/\(.*\)'`
 
@@ -25,7 +27,8 @@ URL_PATH=`expr match "$REQUEST_URI" '.*'"$SCRIPT_NAME"'/\(.*\)'`
 #echo 
 
 # Check authentication as administrative user
-SYNOTOKEN=$(/usr/syno/synoman/webman/login.cgi | sed 's/\d13$//' | awk '/^$/,EOF' | jq -r '.SynoToken')
+#SYNOTOKEN=$(/usr/syno/synoman/webman/login.cgi | sed -E -n '/^\x0D?$/,$p' | jq -r '.SynoToken') # more robust: real JSON parsing of the response body
+SYNOTOKEN=$(/usr/syno/synoman/webman/login.cgi | sed -n '/"SynoToken"/s/^.*"SynoToken".*:.*"\(.*\)".*$/\1/p') # simpler: just sed
 user=$(QUERY_STRING="SynoToken=$SYNOTOKEN" /usr/syno/synoman/webman/modules/authenticate.cgi)
 if [ "$user" != "admin" ]
 then
@@ -34,7 +37,7 @@ then
     exit 0
 fi
 
-curl -q -i -s --referer "$PRIVOXY_URI/" --user-agent "Synology DSM" --proxy "http://127.0.0.1:8118" "$PRIVOXY_URI/$URL_PATH" | sed -e 's~href=\"/~href=\"'"$SCRIPT_NAME/"'~g' -e 's~href=\"'"$PRIVOXY_URI"'~href=\"'"$SCRIPT_NAME"'~g' 2>&1
+curl -q -i -s --referer "$PRIVOXY_URI/" --user-agent "Synology DSM" --proxy "http://127.0.0.1:$PRIVOXY_PORT" "$PRIVOXY_URI/$URL_PATH" | sed -e 's~href=\"/~href=\"'"$SCRIPT_NAME/"'~g' -e 's~'"$PRIVOXY_URI"'~'"$SCRIPT_NAME"'~g' 2>>LOG_FILE # | tee -a /var/packages/privoxy/target/var/log/privoxy/responses.log
 
 #uncomment to debug Synology CGI environment variables
 #echo "<PRE>"
