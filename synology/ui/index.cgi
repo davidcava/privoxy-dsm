@@ -16,6 +16,7 @@
 #This CGI script calls http://config.privoxy.org through Privoxy HTTP proxy rewriting the URLs both ways
 
 PRIVOXY_URI="http://config.privoxy.org"
+PRIVOXY_URI_MATCH="https?://config.privoxy.org"
 PRIVOXY_PORT=8118
 LOG_FILE="/var/packages/privoxy/target/var/log/privoxy/privoxy-dsm.log"
 
@@ -37,7 +38,7 @@ then
     exit 0
 fi
 
-curl -q -i -s --referer "$PRIVOXY_URI/" --user-agent "Synology DSM" --proxy "http://127.0.0.1:$PRIVOXY_PORT" "$PRIVOXY_URI/$URL_PATH" | sed -e 's~href=\"/~href=\"'"$SCRIPT_NAME/"'~g' -e 's~'"$PRIVOXY_URI"'~'"$SCRIPT_NAME"'~g' 2>>LOG_FILE # | tee -a /var/packages/privoxy/target/var/log/privoxy/responses.log
+curl -q -i -s --referer "$PRIVOXY_URI/" --user-agent "Synology DSM" --proxy "http://127.0.0.1:$PRIVOXY_PORT" "$PRIVOXY_URI/$URL_PATH" | sed -E -e 's~href=\"/~href=\"'"$SCRIPT_NAME/"'~g' -e 's~'"$PRIVOXY_URI_MATCH"'~'"$SCRIPT_NAME"'~g' 2>>LOG_FILE # | tee -a /var/packages/privoxy/target/var/log/privoxy/responses.log
 
 #uncomment to debug Synology CGI environment variables
 #echo "<PRE>"
