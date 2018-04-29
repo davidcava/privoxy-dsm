@@ -57,7 +57,7 @@ CONFIGS="config trust default.action match-all.action user.action default.filter
     done
     if [ -n "$NEW" ]; then
         chmod 0660 $CONF_DEST/*.new || exit 1
-        echo "Warning: Older config files are preserved. Check new config files *.new in $CONF_DEST" >>${SYNOPKG_TEMP_LOGFILE}
+        echo "Warning: config files were preserved. Check new config files *.new in $CONF_DEST" >>${SYNOPKG_TEMP_LOGFILE}
     fi
 
     if [ -e $CONF_DEST/templates ]; then

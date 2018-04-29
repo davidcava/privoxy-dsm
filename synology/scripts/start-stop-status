@@ -15,11 +15,11 @@
 
 # Package
 PACKAGE="privoxy"
-DNAME="privoxy"
+DNAME="Privoxy"
 
 # Others
-INSTALL_DIR="/var/packages/privoxy/target"
-CFG_DIR="/var/packages/privoxy"
+INSTALL_DIR="/var/packages/$PACKAGE/target"
+CFG_DIR="/var/packages/$PACKAGE"
 PATH="${INSTALL_DIR}/sbin:${PATH}"
 CMD="${INSTALL_DIR}/sbin/privoxy"
 CFG_FILE="${CFG_DIR}/etc/config"
