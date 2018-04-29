@@ -30,8 +30,8 @@ Listening port should be left as default (8118) (changing it probably breaks adm
 No setup wizard so you need to manually edit the config file after install if the default config does not suit you.
 
 # Build from source
-- Setup the DSM toolkit according to the official documentation
-- Download Privoxy source code into DSM toolkit
+- Setup the DSM toolkit for your model according to the official Synology [Developer's guide](https://developer.synology.com/developer-guide/)
+- Download Privoxy source code into the toolkit
   ```sh
   cd source
   wget https://www.privoxy.org/sf-download-mirror/Sources/3.0.26%20%28stable%29/privoxy-3.0.26-stable-src.tar.gz
@@ -39,7 +39,7 @@ No setup wizard so you need to manually edit the config file after install if th
   mv privoxy-3.0.26-stable privoxy
   cd privoxy
   ```
-- Get privoxy-dsm folders `synology` and `SynoBuildConf`
+- Add the 2 subfolders `synology` and `SynoBuildConf` from `privoxy-dsm` into the privoxy source folder
 - Build for your architecture, example
   ```sh
   /toolkit/pkgscripts-ng/PkgCreate.py -p evansport -x0 -c privoxy
