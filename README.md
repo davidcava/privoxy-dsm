@@ -13,6 +13,7 @@ Privoxy on Synology can be used:
 
 You need to manually adapt the Privoxy config file installed in /var/packages/privoxy/etc/config accordingly.
 Especially, change listen address to 0.0.0.0 if you wish to use the proxy not only from your Synology applications. In this case you also need to open the port 8118 in Synology firewall.
+You might also want to uncomment the 4 debug options to get some logs in /var/packages/privoxy/target/var/log/privoxy/logfile (this log file can also be viewed from the Package Center).
 Config changes are immediately taken into account - no need to restart the service.
 
 Your modifications in `config` file are preserved in case of package uninstallation/reinstallation or upgrade. When a modified config file already exists, the installer will install instead `config.new` in same folder. Same for user.action, user.filter, match-all.action and trust, as those 4 files are meant to be personalized. On the other hand default.action and default.filter are silently overwritten.
@@ -26,9 +27,10 @@ It will probably not install or work on earlier DSM versions.
 It might work on more recent DSM versions but I have not tested.
 Listening port should be left as default (8118) (changing it probably breaks admin pages and maybe other things).
 
-The wizard setup options are not handled yet so you will need to manually edit the config file after install if the default config does not suit you.
+No setup wizard so you need to manually edit the config file after install if the default config does not suit you.
 
 # Build from source
+- Setup the DSM toolkit according to the official documentation
 - Download Privoxy source code into DSM toolkit
   ```sh
   cd source
@@ -38,11 +40,6 @@ The wizard setup options are not handled yet so you will need to manually edit t
   cd privoxy
   ```
 - Get privoxy-dsm folders `synology` and `SynoBuildConf`
-- Workaround DSM toolkit missing `group`, which Privoxy build process neeeds
-  ```sh
-  cp /usr/bin/groups /toolkit/build_env/ds.evansport-6.1/usr/bin
-  ```
-- Create user and group privoxy into the chroot
 - Build for your architecture, example
   ```sh
   /toolkit/pkgscripts-ng/PkgCreate.py -p evansport -x0 -c privoxy

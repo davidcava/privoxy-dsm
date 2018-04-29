@@ -1,0 +1,5 @@
+#!/bin/sh
+# Alternative to the groups command missing in toolkit environment, using id instead
+
+grps=`id -Gn $1` && echo $1 ${1+:} $grps
+

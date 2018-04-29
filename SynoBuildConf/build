@@ -19,6 +19,13 @@ env CC="${CC}" CXX="${CXX}" LD="${LD}" AR=${AR} STRIP=${STRIP} RANLIB=${RANLIB} 
     LDFLAGS="${LDFLAGS}" \
     autoconf
 
+# workaround for missing command groups
+PATH=$PATH:/source/$PKG_NAME/SynoBuildConf/bin
+
+# Need privoxy user and group in chroot to make privoxy configure/make install happy
+grep -q '^privoxy:' /etc/passwd || echo 'privoxy:x:123456:123456:Privoxy:/dev/null:/usr/bin/nologin' >> /etc/passwd
+grep -q '^privoxy:' /etc/group || echo 'privoxy:x:123456:privoxy' >> /etc/group
+
 env CC="${CC}" CXX="${CXX}" LD="${LD}" AR=${AR} STRIP=${STRIP} RANLIB=${RANLIB} NM=${NM} \
     CFLAGS="${CFLAGS}" CXXFLAGS="$CXXFLAGS $CFLAGS" CPPFLAGS="-I/usr/local/include" \
     LDFLAGS="${LDFLAGS}" \

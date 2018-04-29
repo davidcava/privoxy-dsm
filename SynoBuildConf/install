@@ -15,6 +15,9 @@ PrepareDirs() {
 }
 
 SetupPackageFiles() {
+    # workaround for missing command groups
+    PATH=$PATH:/source/$PKG_NAME/SynoBuildConf/bin 
+
     make install
 
     echo SynoBuildConf/install: removing man files
@@ -30,11 +33,12 @@ SetupPackageFiles() {
     mv $INST_DIR/etc/config.tmp $INST_DIR/etc/config
     chmod 0660 $INST_DIR/etc/config
 
-    install -D -t $INST_DIR/port_conf synology/port_conf/privoxy.sc
+    install -D -m 0644 -t $INST_DIR/port_conf synology/port_conf/privoxy.sc
     mkdir $INST_DIR/ui
-    install -D -t $INST_DIR/ui synology/ui/*
+    install -D -m 0644 -t $INST_DIR/ui synology/ui/config
+    install -D -m 0755 -t $INST_DIR/ui synology/ui/*.cgi
     mkdir $INST_DIR/ui/images
-    install -D -t $INST_DIR/ui/images synology/ui/images/*
+    install -D -m 0644 -t $INST_DIR/ui/images synology/ui/images/*
 
     synology/INFO.sh > INFO
     cp INFO "${PKG_DIR}"
