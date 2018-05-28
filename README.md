@@ -2,7 +2,7 @@
 Synology DSM packages for Privoxy.
 
 # Installation
-Download the spk for your architecture from the Release section, then install using Synology Package Center button _Manual Install_. See  architectures on [Synology knowledge base](https://www.synology.com/en-us/knowledgebase/DSM/tutorial/General/What_kind_of_CPU_does_my_NAS_have).
+Download the spk for your architecture from the [Release](/davidcava/privoxy-dsm/releases) section, then install using Synology Package Center button _Manual Install_. See  architectures on [Synology knowledge base](https://www.synology.com/en-us/knowledgebase/DSM/tutorial/General/What_kind_of_CPU_does_my_NAS_have).
 
 # Usage
 Privoxy on Synology can be used:
