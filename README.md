@@ -20,9 +20,10 @@ Additionaly to the [normal Privoxy way](https://www.privoxy.org/user-manual/conf
 
 # Limitation
 The package is designed and built for DSM 6.1.
+It works on DSM 6.2.
 
 It will probably not install or work on earlier DSM versions.
-It might work on more recent DSM versions but I have not tested.
+
 Listening port should be left as default (8118) (changing it probably breaks admin pages and maybe other things).
 
 No setup wizard so you need to manually edit the config file after install if the default config does not suit you.
