@@ -7,7 +7,7 @@ Download the spk for your architecture from the [Release](https://github.com/dav
 # Usage
 Privoxy on Synology can be used:
 - As the filtering proxy it is normally meant to be (default setup),
-- Or as a neutral HTTP/HTTPS proxy that forwards requests through a SOCKS proxy for your other Synology apps (SickRage, CouchPotato...).
+- Or as a neutral HTTP/HTTPS proxy that forwards requests through a SOCKS proxy for your other Synology apps (SickChill, Radarr, Sonarr, CouchPotato...).
 
 You need to manually adapt the Privoxy config file installed in /var/packages/privoxy/etc/config accordingly.
 Especially, change listen address to 0.0.0.0 if you wish to use the proxy not only from your Synology applications. In this case you also need to open the port 8118 in Synology firewall.
