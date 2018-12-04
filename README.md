@@ -2,12 +2,12 @@
 Synology DSM packages for Privoxy.
 
 # Installation
-Download the spk for your architecture from the Release section, then install using Synology Package Center button _Manual Install_. See  architectures on [Synology knowledge base](https://www.synology.com/en-us/knowledgebase/DSM/tutorial/General/What_kind_of_CPU_does_my_NAS_have).
+Download the spk for your architecture from the [Release](https://github.com/davidcava/privoxy-dsm/releases) section, then install using Synology Package Center button _Manual Install_. See  architectures on [Synology knowledge base](https://www.synology.com/en-us/knowledgebase/DSM/tutorial/General/What_kind_of_CPU_does_my_NAS_have).
 
 # Usage
 Privoxy on Synology can be used:
 - As the filtering proxy it is normally meant to be (default setup),
-- Or as a neutral HTTP/HTTPS proxy that forwards requests through a SOCKS proxy for your other Synology apps (SickRage, CouchPotato...).
+- Or as a neutral HTTP/HTTPS proxy that forwards requests through a SOCKS proxy for your other Synology apps (SickChill, Radarr, Sonarr, CouchPotato...).
 
 You need to manually adapt the Privoxy config file installed in /var/packages/privoxy/etc/config accordingly.
 Especially, change listen address to 0.0.0.0 if you wish to use the proxy not only from your Synology applications. In this case you also need to open the port 8118 in Synology firewall.
@@ -20,15 +20,16 @@ Additionaly to the [normal Privoxy way](https://www.privoxy.org/user-manual/conf
 
 # Limitation
 The package is designed and built for DSM 6.1.
+It works on DSM 6.2.
 
 It will probably not install or work on earlier DSM versions.
-It might work on more recent DSM versions but I have not tested.
+
 Listening port should be left as default (8118) (changing it probably breaks admin pages and maybe other things).
 
 No setup wizard so you need to manually edit the config file after install if the default config does not suit you.
 
 # Build from source
-- Setup the DSM toolkit for your model according to the official Synology [Developer's guide](https://developer.synology.com/developer-guide/)
+- Setup the DSM toolkit for your model according to the official Synology [Developer's guide](https://originhelp.synology.com/developer-guide/)
 - Download Privoxy source code into the toolkit
   ```sh
   cd source
