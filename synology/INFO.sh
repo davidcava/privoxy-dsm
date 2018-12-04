@@ -1,7 +1,7 @@
 #!/bin/sh
 # Copyright (c) 2018 David Cavallini
 
-. /pkgscripts/include/pkg_util.sh
+. /pkgscripts-ng/include/pkg_util.sh
 
 package="privoxy"
 version="3.0.26-2"

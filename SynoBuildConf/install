@@ -33,13 +33,15 @@ SetupPackageFiles() {
     mv $INST_DIR/etc/config.tmp $INST_DIR/etc/config
     chmod 0660 $INST_DIR/etc/config
 
-    install -D -m 0644 -t $INST_DIR/port_conf synology/port_conf/privoxy.sc
+    echo SynoBuildConf/install: Adding DSM specific dirs
+    install -D -m 0644 -t $INST_DIR/port_conf synology/port_conf/$PKG_NAME.sc
     mkdir $INST_DIR/ui
     install -D -m 0644 -t $INST_DIR/ui synology/ui/config
     install -D -m 0755 -t $INST_DIR/ui synology/ui/*.cgi
     mkdir $INST_DIR/ui/images
     install -D -m 0644 -t $INST_DIR/ui/images synology/ui/images/*
 
+    echo SynoBuildConf/install: Adding DSM packaging files
     synology/INFO.sh > INFO
     cp INFO "${PKG_DIR}"
     cp -r synology/scripts/ "${PKG_DIR}"
@@ -49,7 +51,7 @@ SetupPackageFiles() {
 }
 
 MakePackage() {
-    source /pkgscripts/include/pkg_util.sh
+    source /pkgscripts-ng/include/pkg_util.sh
     pkg_make_package $INST_DIR $PKG_DIR
     pkg_make_spk $PKG_DIR $PKG_DEST
 }
