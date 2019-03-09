@@ -33,9 +33,9 @@ No setup wizard so you need to manually edit the config file after install if th
 - Download Privoxy source code into the toolkit
   ```sh
   cd source
-  wget https://www.privoxy.org/sf-download-mirror/Sources/3.0.26%20%28stable%29/privoxy-3.0.26-stable-src.tar.gz
-  tar xzf privoxy-3.0.26-stable-src.tar.gz
-  mv privoxy-3.0.26-stable privoxy
+  wget https://www.privoxy.org/sf-download-mirror/Sources/3.0.28%20%28stable%29/privoxy-3.0.28-stable-src.tar.gz
+  tar xzf privoxy-3.0.28-stable-src.tar.gz
+  mv privoxy-3.0.28-stable privoxy
   cd privoxy
   ```
 - Add the 2 subfolders `synology` and `SynoBuildConf` from `privoxy-dsm` into the privoxy source folder
