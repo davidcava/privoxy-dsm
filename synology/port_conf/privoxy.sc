@@ -1,4 +1,4 @@
-[service_name]
+[privoxy]
 title="Proxy HTTP/HTTPS"
 desc="Privoxy"
 port_forward="no"
