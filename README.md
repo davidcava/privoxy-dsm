@@ -38,7 +38,11 @@ No setup wizard so you need to manually edit the config file after install if th
   mv privoxy-3.0.28-stable privoxy
   cd privoxy
   ```
-- Add the 2 subfolders `synology` and `SynoBuildConf` from `privoxy-dsm` into the privoxy source folder
+- Add or link the 2 subfolders `synology` and `SynoBuildConf` from `privoxy-dsm` into the privoxy source folder
+  ```sh
+  git clone https://github.com/davidcava/privoxy-dsm.git
+  ln -s ./privoxy-dsm/SynoBuildConf ./privoxy-dsm/synology .
+  ```
 - Build for your architecture, example
   ```sh
   /toolkit/pkgscripts-ng/PkgCreate.py -p evansport -x0 -c privoxy
