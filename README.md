@@ -19,10 +19,9 @@ Your modifications in `config` file are preserved in case of package uninstallat
 Additionaly to the [normal Privoxy way](https://www.privoxy.org/user-manual/configuration.html), the Privoxy admin page can also be opened from within DSM by clicking on the Privoxy icon when authenticated as admin user. This allows to use the admin pages even when the proxy is not accessible from outside the Synology machine (when it listens on 127.0.0.1 or firewall port 8118 is kept closed).
 
 # Limitation
-The package is designed and built for DSM 6.1.
-It works on DSM 6.2.
+Just after installing, clicking on the icon might not launch the Privoxy admin as expected. Workaround is to reload the Synology web page and retry.
 
-It will probably not install or work on earlier DSM versions.
+The package is designed and built with DSM 6.2.  It probably only works on DSM 6.x .
 
 Listening port should be left as default (8118) (changing it probably breaks admin pages and maybe other things).
 
@@ -33,9 +32,9 @@ No setup wizard so you need to manually edit the config file after install if th
 - Download Privoxy source code into the toolkit
   ```sh
   cd source
-  wget https://www.privoxy.org/sf-download-mirror/Sources/3.0.28%20%28stable%29/privoxy-3.0.28-stable-src.tar.gz
-  tar xzf privoxy-3.0.28-stable-src.tar.gz
-  mv privoxy-3.0.28-stable privoxy
+  wget https://www.privoxy.org/sf-download-mirror/Sources/3.0.29%20%28stable%29/privoxy-3.0.29-stable-src.tar.gz
+  tar xzf privoxy-3.0.29-stable-src.tar.gz
+  mv privoxy-3.0.29-stable privoxy
   cd privoxy
   ```
 - Add or link the 2 subfolders `synology` and `SynoBuildConf` from `privoxy-dsm` into the privoxy source folder

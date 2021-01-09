@@ -26,10 +26,13 @@ PATH=$PATH:/source/$PKG_NAME/SynoBuildConf/bin
 grep -q '^privoxy:' /etc/passwd || echo 'privoxy:x:123456:123456:Privoxy:/dev/null:/usr/bin/nologin' >> /etc/passwd
 grep -q '^privoxy:' /etc/group || echo 'privoxy:x:123456:privoxy' >> /etc/group
 
+#OTHEROPTIONS="--with-openssl" # --with-mbedtls or --with-openssl is needed for https inspection
+
 env CC="${CC}" CXX="${CXX}" LD="${LD}" AR=${AR} STRIP=${STRIP} RANLIB=${RANLIB} NM=${NM} \
     CFLAGS="${CFLAGS}" CXXFLAGS="$CXXFLAGS $CFLAGS" CPPFLAGS="-I/usr/local/include" \
     LDFLAGS="${LDFLAGS}" \
     ./configure ${ConfigOpt} \
+    $OTHEROPTIONS \
     --with-docbook=no \
     --prefix=${INST_DIR}
 
