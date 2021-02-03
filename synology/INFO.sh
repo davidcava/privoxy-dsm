@@ -6,7 +6,7 @@
 package="privoxy"
 version="3.0.29-1"
 displayname="Privoxy"
-arch="$(pkg_get_platform)"
+arch="$(pkg_get_platform_family)"
 maintainer="David Cavallini"
 distributor="davidcava"
 distributor_url="https://github.com/davidcava/"

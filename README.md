@@ -42,9 +42,9 @@ No setup wizard so you need to manually edit the config file after install if th
   git clone https://github.com/davidcava/privoxy-dsm.git
   ln -s ./privoxy-dsm/SynoBuildConf ./privoxy-dsm/synology .
   ```
-- Build for your architecture, example
+- Build for your architecture (or for several), example
   ```sh
-  /toolkit/pkgscripts-ng/PkgCreate.py -p evansport -x0 -c privoxy
+  /toolkit/pkgscripts-ng/PkgCreate.py -v6.2 -x0 -c privoxy --print-log -p "evansport broadwell alpine qoriq rtd1296 comcerto2k armada370 armada375 armadaxp monaco armada38x hi3535"
   ```
 - If everything went fine, package is now in `/toolkit/result_spk`
 

@@ -53,7 +53,7 @@ SetupPackageFiles() {
 MakePackage() {
     source /pkgscripts-ng/include/pkg_util.sh
     pkg_make_package $INST_DIR $PKG_DIR
-    pkg_make_spk $PKG_DIR $PKG_DEST
+    pkg_make_spk $PKG_DIR $PKG_DEST $(pkg_get_spk_family_name)
 }
 
 main() {
