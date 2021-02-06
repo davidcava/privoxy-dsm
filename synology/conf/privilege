@@ -4,6 +4,6 @@
   },
   "executable":[{
     "relpath": "ui/index.cgi",
-    "run-as": "system"
+    "run-as": "root"
   }]
 }
