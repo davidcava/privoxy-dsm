@@ -16,10 +16,10 @@ Except when changing the listen address, config changes are normally immediately
 
 Your modifications in `config` file are preserved in case of package uninstallation/reinstallation or upgrade. When a modified config file already exists, the installer will install instead `config.new` in same folder. Same for user.action, user.filter, match-all.action and trust, as those 4 files are meant to be personalized. On the other hand default.action and default.filter are silently overwritten.
 
-Additionaly to the [normal Privoxy way](https://www.privoxy.org/user-manual/configuration.html), the Privoxy admin page can also be opened from within DSM by clicking on the Privoxy icon when authenticated as admin user. This allows to use the admin pages even when the proxy is not accessible from outside the Synology machine (when it listens on 127.0.0.1 or firewall port 8118 is kept closed).
+Additionaly to the [normal Privoxy way](https://www.privoxy.org/user-manual/configuration.html), the Privoxy admin page can also be opened from within DSM by clicking on the Privoxy icon when authenticated as a user who is an administrator. This allows to use the admin pages even when the proxy is not accessible from outside the Synology machine (when it listens on 127.0.0.1 or firewall port 8118 is kept closed).
 
 # Limitation
-Just after installing, clicking on the icon might not launch the Privoxy admin as expected. Workaround is to reload the Synology web page and retry.
+Just after installing, clicking on the icon might not launch the Privoxy admin page as expected. Workaround is to reload the Synology web page and retry.
 
 The package is designed and built with DSM 6.2.  It probably only works on DSM 6.x .
 

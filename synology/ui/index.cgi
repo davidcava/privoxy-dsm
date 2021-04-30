@@ -30,11 +30,12 @@ URL_PATH=`expr match "$REQUEST_URI" '.*'"$SCRIPT_NAME"'/\(.*\)'`
 # Check authentication as administrative user
 #SYNOTOKEN=$(/usr/syno/synoman/webman/login.cgi | sed -E -n '/^\x0D?$/,$p' | jq -r '.SynoToken') # more robust: real JSON parsing of the response body
 SYNOTOKEN=$(/usr/syno/synoman/webman/login.cgi | sed -n '/"SynoToken"/s/^.*"SynoToken".*:.*"\(.*\)".*$/\1/p') # simpler: just sed
-user=$(QUERY_STRING="SynoToken=$SYNOTOKEN" /usr/syno/synoman/webman/modules/authenticate.cgi)
-if [ "$user" != "admin" ]
+if ! user=$(QUERY_STRING="SynoToken=$SYNOTOKEN" /usr/syno/synoman/webman/modules/authenticate.cgi) \
+    || [ "$user" = "" ] \
+    || ! id -G -n "$user" | grep -q "\<administrators\>"
 then
     echo 
-    echo "<HTML><HEAD><TITLE>Login Required</TITLE></HEAD><BODY>Please login as admin first, before using this webpage ()</BODY></HTML>"
+    echo "<HTML><HEAD><TITLE>Login Required</TITLE></HEAD><BODY>Please login with admin rights before using this page</BODY></HTML>"
     exit 0
 fi
 
