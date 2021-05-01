@@ -32,7 +32,7 @@ URL_PATH=`expr match "$REQUEST_URI" '.*'"$SCRIPT_NAME"'/\(.*\)'`
 SYNOTOKEN=$(/usr/syno/synoman/webman/login.cgi | sed -n '/"SynoToken"/s/^.*"SynoToken".*:.*"\(.*\)".*$/\1/p') # simpler: just sed
 if ! user=$(QUERY_STRING="SynoToken=$SYNOTOKEN" /usr/syno/synoman/webman/modules/authenticate.cgi) \
     || [ "$user" = "" ] \
-    || ! id -G -n "$user" | grep -q "\<administrators\>"
+    || ! id -G -n "$user" | grep -qE "( |^)administrators( |$)"
 then
     echo 
     echo "<HTML><HEAD><TITLE>Login Required</TITLE></HEAD><BODY>Please login with admin rights before using this page</BODY></HTML>"
