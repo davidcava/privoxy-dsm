@@ -23,41 +23,40 @@ CFG_DIR="/var/packages/$PACKAGE"
 PATH="${INSTALL_DIR}/sbin:${PATH}"
 CMD="${INSTALL_DIR}/sbin/privoxy"
 CFG_FILE="${CFG_DIR}/etc/config"
-PID_FILE="${INSTALL_DIR}/var/run/${PACKAGE}.pid"
-LOG_FILE="${INSTALL_DIR}/var/log/privoxy/logfile"
+PID_FILE="${CFG_DIR}/var/${PACKAGE}.pid"
+LOG_FILE="${CFG_DIR}/var/logfile"
+SYSTEMD_SVC=pkguser-privoxydsm
 
 start_daemon ()
 {
-    #No need to su as start is already called with privoxy user
-    ${CMD} --pidfile ${PID_FILE} ${CFG_FILE}
+    #${CMD} --pidfile ${PID_FILE} ${CFG_FILE}
+
+    synosystemctl start $SYSTEMD_SVC
+
+    warn_if_cgi_not_root
 }
 
 stop_daemon ()
 {
-    kill `cat ${PID_FILE}`
-    wait_for_status 1 20 || kill -9 `cat ${PID_FILE}`
-    rm -f ${PID_FILE}
+    synosystemctl stop $SYSTEMD_SVC
 }
 
 daemon_status ()
 {
-    if [ -f ${PID_FILE} ] && kill -0 `cat ${PID_FILE}` > /dev/null 2>&1; then
-        return
+    #unfortunately there is no synosystemctl status, so check with the PID file
+    if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" > /dev/null 2>&1; then
+        return 0
+    else
+        rm -f "$PID_FILE"
+        return 1
     fi
-    rm -f ${PID_FILE}
-    return 1
 }
 
-wait_for_status ()
+warn_if_cgi_not_root ()
 {
-    counter=$2
-    while [ ${counter} -gt 0 ]; do
-        daemon_status
-        [ $? -eq $1 ] && return
-        let counter=counter-1
-        sleep 1
-    done
-    return 1
+    if [ ! "$(stat -c %u "$INSTALL_DIR/ui/index.cgi")" = "0" ]; then
+        echo "Privoxy DSM misses privileges allowing to access the web admin interface. If you need it, connect though SSH, run the following command and restart: sudo /var/packages/privoxy/scripts/addprivileges" >> "$SYNOPKG_TEMP_LOGFILE"
+    fi
 }
 
 case $1 in

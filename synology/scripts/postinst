@@ -23,26 +23,30 @@ CONFIGS="config trust default.action match-all.action user.action default.filter
     echo Installing configuration files to $CONF_DEST
     for i in $CONFIGS; do
         if [ "$i" = "default.action" ] || [ "$i" = "default.filter" ] ; then
-            cmp -s ${PKGDEST_ETC}/$i $CONF_DEST/$i
-            if [ $? -eq 0 ]
+            if cmp -s ${PKGDEST_ETC}/$i $CONF_DEST/$i
             then
                 echo "File $i is same as already installed - not installing this file again"
 		rm -f ${PKGDEST_ETC}/$i
             else
                 rm -f $CONF_DEST/$i
                 echo Installing fresh $i
-                mv -f ${PKGDEST_ETC}/$i $CONF_DEST || exit 1
+                mv -f ${PKGDEST_ETC}/$i $CONF_DEST/ || exit 1
             fi
         elif [ -s "$CONF_DEST/$i" ]; then
-            cmp -s ${PKGDEST_ETC}/$i $CONF_DEST/$i
-            if [ $? -eq 0 ]
+            if diff -q -Z -B -I '#.*' ${PKGDEST_ETC}/$i $CONF_DEST/$i
             then
-                echo "File $i is same as already installed - not installing this file again"
-		rm -f ${PKGDEST_ETC}/$i
+                if cmp -s ${PKGDEST_ETC}/$i $CONF_DEST/$i
+                then
+                    echo "File $i is same as already installed - not installing this file again"
+		    rm -f ${PKGDEST_ETC}/$i
+		else
+                    rm -f $CONF_DEST/$i
+                    echo "File $i has updated comments but is otherwise same as already installed - updating with new version"
+                    mv -f ${PKGDEST_ETC}/$i $CONF_DEST/ || exit 1
+		fi
             else
                 NEW=1
-                cmp -s ${PKGDEST_ETC}/$i $CONF_DEST/$i.new
-                if [ $? -eq 0 ]
+                if cmp -s ${PKGDEST_ETC}/$i $CONF_DEST/$i.new
                 then
                     echo "File $i is different but same $i.new was already installed previously - not installing this file again"
                     rm -f ${PKGDEST_ETC}/$i
@@ -52,7 +56,8 @@ CONFIGS="config trust default.action match-all.action user.action default.filter
                 fi
             fi
         else
-            mv -f ${PKGDEST_ETC}/$i $CONF_DEST || exit 1
+            echo Installing new file $i
+            mv -f ${PKGDEST_ETC}/$i $CONF_DEST/ || exit 1
         fi
     done
     if [ -n "$NEW" ]; then
@@ -67,7 +72,9 @@ CONFIGS="config trust default.action match-all.action user.action default.filter
         ln -sf ${PKGDEST_ETC}/templates $CONF_DEST/templates || exit 1
     fi
 
-    #not needed because this link is automatically added according to the INFO entry dsmuidir
-    #ln -sf "${SYNOPKG_PKGDEST}/ui" /usr/syno/synoman/webman/3rdparty/privoxy/ui
+    #When upgrading from DSM6 replace logdir with DSM7's new destination
+    sed -E -i -e 's+^logdir /var/packages/privoxy/target/var/log/privoxy+logdir /var/packages/privoxy/var+' $CONF_DEST/config
+
+    echo "<p/>Privoxy can work as-is, but you won't be able to access the web admin interface because it needs additional privileges: connect though SSH, run the following command and restart: sudo /var/packages/privoxy/scripts/addprivileges" >> "$SYNOPKG_TEMP_LOGFILE"
 
 exit 0

@@ -35,7 +35,7 @@ if ! user=$(QUERY_STRING="SynoToken=$SYNOTOKEN" /usr/syno/synoman/webman/modules
     || ! id -G -n "$user" | grep -qE "( |^)administrators( |$)"
 then
     echo 
-    echo "<HTML><HEAD><TITLE>Login Required</TITLE></HEAD><BODY>Please login with admin rights before using this page</BODY></HTML>"
+    echo "<HTML><HEAD><TITLE>Login Required</TITLE></HEAD><BODY>Please login with admin rights before using this page<p/>On DSM7, if you are already logged in with a user having admin rights and this message appears, it means you need to run the following command after installation or update of the package: sudo /var/packages/privoxy/scripts/addprivileges</BODY></HTML>"
     exit 0
 fi
 

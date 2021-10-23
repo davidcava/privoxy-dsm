@@ -1,5 +1,6 @@
 {
 	"port-config": {
 		"protocol-file": "port_conf/privoxy.sc"
-	}
+	},
+	"systemd-user-unit": {}
 }

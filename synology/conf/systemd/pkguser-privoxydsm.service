@@ -1,0 +1,23 @@
+[Unit]
+Description=Privoxy
+IgnoreOnIsolate=yes
+DefaultDependencies=no
+#After=network-online.target
+
+[Service]
+Type=forking
+#CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+#AmbientCapabilities=CAP_NET_BIND_SERVICE
+#User=privoxy
+#Group=privoxy
+PIDFile=/var/packages/privoxy/var/privoxy.pid
+ExecStart=/var/packages/privoxy/target/sbin/privoxy --pidfile /var/packages/privoxy/var/privoxy.pid /var/packages/privoxy/etc/config
+#Slice=privoxy.slice
+
+#[Install]
+#WantedBy=multi-user.target
+
+[X-Synology]
+#DefaultEnable=
+#VolumeDependency=
+

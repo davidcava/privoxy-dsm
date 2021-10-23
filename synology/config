@@ -1,5 +1,5 @@
 listen-address 0.0.0.0:8118
 forward-socks5 / 127.0.0.1:1080 .
-logdir /var/packages/privoxy/target/var/log/privoxy
+logdir /var/packages/privoxy/var
 logfile logfile
 debug 15328

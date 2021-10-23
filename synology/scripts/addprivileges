@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PACKAGE="privoxy"
+INSTALL_DIR="/var/packages/$PACKAGE/target"
+SYNOCONF_DIR="/var/packages/$PACKAGE/conf"
+
+chown root:privoxy "$INSTALL_DIR"/ui/*.cgi
+mv "$SYNOCONF_DIR"/privilege.wanted "$SYNOCONF_DIR"/privilege
+

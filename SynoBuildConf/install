@@ -24,13 +24,12 @@ SetupPackageFiles() {
     rm -fr $INST_DIR/share/man
 
     echo SynoBuildConf/install: Re-rewriting config
-    sed -E -e 's+^#?confdir .*+confdir /var/packages/privoxy/etc+' \
-           -e 's+^#?logdir .*+logdir /var/packages/privoxy/target/var/log/privoxy+' \
-           -e 's+^#?user-manual .*+user-manual /var/packages/privoxy/target/share/doc/privoxy/user-manual+' \
-           -e 's+^#?enable-remote-toggle .*+enable-remote-toggle  1+' \
-           -e 's+^#?enable-edit-actions .*+enable-edit-actions 1+' \
-           $INST_DIR/etc/config >$INST_DIR/etc/config.tmp
-    mv $INST_DIR/etc/config.tmp $INST_DIR/etc/config
+    sed -E -i -e 's+^#?confdir .*+confdir /var/packages/privoxy/etc+' \
+              -e 's+^#?logdir .*+logdir /var/packages/privoxy/var+' \
+              -e 's+^#?user-manual .*+user-manual /var/packages/privoxy/target/share/doc/privoxy/user-manual+' \
+              -e 's+^#?enable-remote-toggle .*+enable-remote-toggle  1+' \
+              -e 's+^#?enable-edit-actions .*+enable-edit-actions 1+' \
+              $INST_DIR/etc/config
     chmod 0660 $INST_DIR/etc/config
 
     echo SynoBuildConf/install: Adding DSM specific dirs

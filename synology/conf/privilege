@@ -1,9 +1,5 @@
 {
   "defaults":{
     "run-as": "package"
-  },
-  "executable":[{
-    "relpath": "ui/index.cgi",
-    "run-as": "root"
-  }]
+  }
 }
