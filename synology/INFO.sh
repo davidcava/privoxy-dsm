@@ -4,7 +4,7 @@
 . /pkgscripts-ng/include/pkg_util.sh
 
 package="privoxy"
-version="3.0.32-3"
+version="3.0.33-1"
 os_min_ver="7.0-40000"
 displayname="Privoxy"
 arch="$(pkg_get_platform_family)"
