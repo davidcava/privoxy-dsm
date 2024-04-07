@@ -31,13 +31,13 @@ Listening port should be left as default (8118) (changing it probably breaks adm
 No setup wizard so you need to manually edit the config file after install if the default config does not suit you.
 
 # Build from source
-- Setup the DSM toolkit for your model according to the official Synology [Developer's guide](https://global.download.synology.com/download/Document/Software/DeveloperGuide/Firmware/DSM/7.0/enu/DSM_Developer_Guide_7_0_Beta.pdf)
+- Setup the DSM toolkit for your model according to the official Synology [Developer's guide](https://global.download.synology.com/download/Document/Software/DeveloperGuide/Os/DSM/All/enu/DSM_Developer_Guide_7_enu.pdf)
 - Download Privoxy source code into the toolkit
   ```sh
   cd source
-  wget https://www.privoxy.org/sf-download-mirror/Sources/3.0.33%20%28stable%29/privoxy-3.0.33-stable-src.tar.gz
-  tar xzf privoxy-3.0.33-stable-src.tar.gz
-  mv privoxy-3.0.33-stable privoxy
+  wget https://www.privoxy.org/sf-download-mirror/Sources/3.0.34%20%28stable%29/privoxy-3.0.34-stable-src.tar.gz
+  tar xzf privoxy-3.0.34-stable-src.tar.gz
+  mv privoxy-3.0.34-stable privoxy
   cd privoxy
   ```
 - Add or link the 2 subfolders `synology` and `SynoBuildConf` from `privoxy-dsm` into the privoxy source folder

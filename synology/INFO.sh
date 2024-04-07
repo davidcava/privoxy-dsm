@@ -1,10 +1,10 @@
 #!/bin/sh
-# Copyright (c) 2018-2021 David Cavallini
+# Copyright (c) 2018-2024 David Cavallini
 
 . /pkgscripts-ng/include/pkg_util.sh
 
 package="privoxy"
-version="3.0.33-1"
+version="3.0.34-1"
 os_min_ver="7.0-40000"
 displayname="Privoxy"
 arch="$(pkg_get_platform_family)"
