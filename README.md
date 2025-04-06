@@ -35,9 +35,9 @@ No setup wizard so you need to manually edit the config file after install if th
 - Download Privoxy source code into the toolkit
   ```sh
   cd source
-  wget https://www.privoxy.org/sf-download-mirror/Sources/3.0.34%20%28stable%29/privoxy-3.0.34-stable-src.tar.gz
-  tar xzf privoxy-3.0.34-stable-src.tar.gz
-  mv privoxy-3.0.34-stable privoxy
+  wget https://www.privoxy.org/sf-download-mirror/Sources/4.0.0%20%28stable%29/privoxy-4.0.0-stable-src.tar.gz
+  tar xzf privoxy-4.0.0-stable-src.tar.gz
+  mv privoxy-4.0.0-stable privoxy
   cd privoxy
   ```
 - Add or link the 2 subfolders `synology` and `SynoBuildConf` from `privoxy-dsm` into the privoxy source folder
@@ -52,7 +52,7 @@ No setup wizard so you need to manually edit the config file after install if th
 - If everything went fine, package is now in `/toolkit/result_spk`
 
 # Licence
-    Copyright (c) 2018-2021 David Cavallini
+    Copyright (c) 2018-2025 David Cavallini
 
     privoxy-dsm is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
